@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemesis MR | Sitio Oficial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(0,168,255,0.3);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, #00A8FF, #FF0040);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00A8FF;
+        }
+
+        .social-header {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon-header {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,168,255,0.1);
+            border: 2px solid rgba(0,168,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00A8FF;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-icon-header:hover {
+            background: #00A8FF;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 2px solid #00A8FF;
+            color: #00A8FF;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 5px;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 30% 50%, rgba(255,0,64,0.15), transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0,168,255,0.15), transparent 50%),
+                        #000;
+            padding: 120px 5% 60px;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 1200px;
+        }
+
+        .hero-image {
+            width: 350px;
+            height: 350px;
+            margin: 0 auto 50px;
+            border-radius: 50%;
+            background: url('https://i.ibb.co/KjV7kQSc/IMG-20250917-141816-380.webp') center/cover no-repeat;
+            box-shadow: 0 0 100px rgba(0,168,255,0.6),
+                        0 0 200px rgba(255,0,64,0.4);
+            border: 5px solid rgba(0,168,255,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,0,64,0.15) 0%, transparent 50%, rgba(0,168,255,0.15) 100%);
+        }
+
+        @keyframes rotate-gradient {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .artist-name-hero {
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 15px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #fff, #00A8FF, #FF0040, #fff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 50px;
+            letter-spacing: 5px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #00A8FF, #0077CC);
+            color: #fff;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,168,255,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,168,255,0.5);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #00A8FF;
+        }
+
+        /* SECTION */
+        .section {
+            padding: 100px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: 'Bebas Neue', sans-serif;
+            text-align: center;
+            margin-bottom: 70px;
+            letter-spacing: 8px;
+            color: #00A8FF;
+        }
+
+        /* LATEST RELEASE */
+        .latest-release {
+            background: #0a0a0a;
+        }
+
+        .album-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .album-cover-main {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,168,255,0.5);
+            overflow: hidden;
+            transition: transform 0.3s;
+            background: #000;
+        }
+
+        .album-cover-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .album-cover-main:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .album-cover-main:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .album-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF0040, #00A8FF);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .album-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-family: 'Bebas Neue', sans-serif;
+            margin-bottom: 20px;
+            color: #00A8FF;
+        }
+
+        .album-description {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .album-credits {
+            font-size: 1rem;
+            color: #00A8FF;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .streaming-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stream-btn {
+            background: rgba(0,168,255,0.1);
+            border: 2px solid rgba(0,168,255,0.3);
+            color: #00A8FF;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .stream-btn:hover {
+            background: #00A8FF;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        /* BIO SECTION */
+        .bio-section {
+            background: #000;
+        }
+
+        .bio-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .bio-image {
+            width: 100%;
+            height: 600px;
+            background: url('https://i.ibb.co/S4B9wgQw/DSC8405-copy.jpg') center/cover no-repeat;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0,168,255,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bio-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,168,255,0.1), rgba(255,0,64,0.1));
+        }
+
+        .bio-content h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-family: 'Bebas Neue', sans-serif;
+            margin-bottom: 30px;
+            color: #00A8FF;
+        }
+
+        .bio-content p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .bio-highlight {
+            background: rgba(0,168,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #00A8FF;
+            margin-top: 30px;
+        }
+
+        /* LINKS SECTION */
+        .links-section {
+            background: #0a0a0a;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .link-card {
+            background: rgba(0,168,255,0.05);
+            border: 2px solid rgba(0,168,255,0.2);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .link-card:hover {
+            border-color: #00A8FF;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,168,255,0.4);
+            background: rgba(0,168,255,0.1);
+        }
+
+        .link-icon {
+            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00A8FF, #0077CC);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .link-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .link-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* SINGLES SECTION */
+        .singles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .single-card {
+            background: rgba(0,168,255,0.05);
+            border: 2px solid rgba(0,168,255,0.2);
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .single-card:hover {
+            border-color: #00A8FF;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,168,255,0.3);
+        }
+
+        .single-cover {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #FF0040, #00A8FF);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .single-icon {
+            font-size: 4rem;
+        }
+
+        .single-info h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #00A8FF;
+        }
+
+        .single-info .feat {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 5px;
+        }
+
+        .single-info .year {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 15px;
+        }
+
+        .single-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .single-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(0,168,255,0.1);
+            border: 2px solid rgba(0,168,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .single-links a:hover {
+            background: #00A8FF;
+            transform: scale(1.1);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #000;
+            padding: 80px 5% 40px;
+            border-top: 1px solid rgba(0,168,255,0.2);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto 50px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 60px;
+        }
+
+        .footer-brand h3 {
+            font-size: 2.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            color: #00A8FF;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: rgba(0,168,255,0.1);
+            border: 2px solid rgba(0,168,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00A8FF;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            background: #00A8FF;
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            color: #00A8FF;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            color: #00A8FF;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0,168,255,0.1);
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .album-showcase, .bio-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background: rgba(0,0,0,0.98);
+                flex-direction: column;
+                padding: 40px 0;
+                gap: 25px;
+                align-items: center;
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .album-cover-main {
+                height: 350px;
+            }
+
+            .streaming-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bio-image {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">NEMESIS MR</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav>
+            <ul class="nav-links" id="navMenu">
+                <li><a href="#home" onclick="closeMenu()">Inicio</a></li>
+                <li><a href="#music" onclick="closeMenu()">Música</a></li>
+                <li><a href="#bio" onclick="closeMenu()">Biografía</a></li>
+                <li><a href="#links" onclick="closeMenu()">Conectar</a></li>
+                <li><a href="#footer-contact" onclick="closeMenu()">Contacto</a></li>
+            </ul>
+        </nav>
+        <div class="social-header">
+            <a href="https://www.instagram.com/nemesis_mr_/" target="_blank" class="social-icon-header" title="Instagram">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+            <a href="https://youtube.com/@nemesismrofficial" target="_blank" class="social-icon-header" title="YouTube">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <div class="hero-image"></div>
+             <h1 class="artist-name-hero"> NEMESIS MR </h1>
+            <p class="hero-tagline">DESDE LA REPÚBLICA "TU LO SABE"</p>
+            <div class="cta-buttons">
+                <a href="https://youtube.com/playlist?list=PLyIAii7KaaF4Gn49Y9WjWbzIWoZwbXgk3&si=4Y_M8aK133EgvKao" target="_blank" class="cta-button">🎵 Escuchar Ahora</a>
+                <a href="#links" class="cta-button secondary">🔗 Sígueme</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LATEST RELEASE -->
+    <section id="music" class="section latest-release">
+        <h2 class="section-title">Discografía</h2>
+        
+        <!-- El Primer Dia -->
+        <div class="album-showcase">
+            <div class="album-cover-main">
+                <img src="https://i.ibb.co/Q72BXqZR/592x592bb.webp" alt="Me Gusta EP Cover">
+            </div>
+            <div class="album-info">
+                <span class="album-badge">🔥 EP - 2025</span>
+                <h3 class="album-title">El primer Dia</h3>
+                <p class="album-description">
+                    Una pieza vibrante que encapsula la anticipación y el deseo de un encuentro esperado. En esta producción, Nemesis MR explora la faceta más romántica y directa del género urbano, manteniendo su sello distintivo de autenticidad dominicana.
+                </p>
+                <p class="album-description">
+                    Con una lírica que habla sobre la ilusión de un amor sobrenatural y la promesa de una conexión genuina, la canción se desarrolla sobre una base rítmica moderna producida por Bone El Productor de Oro. Es un tema diseñado para conectar con el corazón y el movimiento, reafirmando la versatilidad de Nemesis MR para narrar historias de pasión con un sonido fresco y envolvente.
+                </p>
+                <p class="album-credits">
+                    <strong>Producido por:</strong>   Bone el productor de oro 😈
+                </p>
+                <div class="streaming-grid">
+                    <a href="https://open.spotify.com/intl-es/track/6LiDXgtT5GHSDlOvUHqPPU?si=895348e705634c56" target="_blank" class="stream-btn">🎵 Spotify</a>
+                    <a href="https://music.apple.com/do/album/el-primer-d%C3%ADa-single/1492917820" target="_blank" class="stream-btn">🍎 Apple Music</a>
+                    <a href="https://youtu.be/F2WPpH4Bu6M?si=0-pkQ8JvjVCY8qVJ" target="_blank" class="stream-btn">▶️ YouTube Music</a>
+                    <a href="https://link.deezer.com/s/329jyJDwGwScfVLOADDOr" target="_blank" class="stream-btn">🎧 Deezer</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Singles Section -->
+        <div style="margin-top: 100px;">
+            <h3 style="font-size: 2.5rem; font-family: 'Bebas Neue', sans-serif; text-align: center; margin-bottom: 50px; color: #00A8FF; letter-spacing: 5px;">SINGLES & COLABORACIONES</h3>
+            
+            <div class="singles-grid">
+                <!-- Caile -->
+                <div class="single-card">
+                    <div class="single-cover" style="background: url('https://i.ibb.co/QSNr7RF/EP-NEMESIS-caile.jpg') center/cover no-repeat;">
+                    </div>
+                    <div class="single-info">
+                        <h4> caile </h4>
+                        <p class="year">2025</p>
+                        <div class="single-links">
+                            <a href="https://open.spotify.com/intl-es/track/7cCRmJ45nlp5p4IjffywD9?si=b76e32d402c54ad7" target="_blank" title="Spotify">🎵</a>
+                            <a href="https://music.apple.com/do/song/caile/1851279091" target="_blank" title="Apple Music">🍎</a>
+                            <a href="https://youtu.be/jlTBgoGSsVs?si=WCLs30SHTslpu43-" target="_blank" title="YouTube">▶️</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Me Gusta -->
+                <div class="single-card">
+                    <div class="single-cover" style="background: url('https://i.ibb.co/jSc9CLy/EP-NEMESIS-MR.png') center/cover no-repeat;">
+                    </div>
+                    <div class="single-info">
+                        <h4>Me Gusta</h4>
+                        <p class="year">2025</p>
+                        <div class="single-links">
+                            <a href="https://open.spotify.com/intl-es/track/3M4btaD8NjofW4BemCpW7z?si=7896735cfe6b46a9" target="_blank" title="Spotify">🎵</a>
+                            <a href="https://music.apple.com/do/album/me-gusta-ep/1851279090" target="_blank" title="Apple Music">🍎</a>
+                            <a href="https://youtu.be/d0dGV1-_5h4?si=5KkTEX-vL2tduGQI" target="_blank" title="YouTube">▶️</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- La Ocasión -->
+                <div class="single-card">
+                    <div class="single-cover" style="background: url('https://i.ibb.co/1YvfdRjq/EP-NEMESIS-la-ocasion.jpg') center/cover no-repeat;">
+                    </div>
+                    <div class="single-info">
+                        <h4>La Ocasión</h4>
+                        <p class="year">2025</p>
+                        <div class="single-links">
+                            <a href="https://open.spotify.com/intl-es/track/7iyb8V5eO47mFFeIpKzkLG?si=000d3f8a852a4916" target="_blank" title="Spotify">🎵</a>
+                            <a href="https://music.apple.com/do/song/la-ocasion/1851279126" target="_blank" title="Apple Music">🍎</a>
+                            <a href="https://youtu.be/In3uy1Wzrd4?si=oLuXrgp-G4nD7LnN" target="_blank" title="YouTube">▶️</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fue Real -->
+                <div class="single-card">
+                    <div class="single-cover" style="background: url('https://i.ibb.co/6RNfCnzs/EP-NEMESIS-fue-real.jpg') center/cover no-repeat;">
+                    </div>
+                    <div class="single-info">
+                        <h4>Fue Real</h4>
+                        <p class="year">2025</p>
+                        <div class="single-links">
+                            <a href="https://open.spotify.com/intl-es/track/7qB3wMy2zPDeFA153ySSmk?si=0243a9ffce6a484a" target="_blank" title="Spotify">🎵</a>
+                            <a href="https://music.apple.com/do/song/fue-real/18512" target="_blank" title="Apple Music">🍎</a>
+                            <a href="https://youtu.be/3wNBN1UTwgI?si=6eTT383TwkSgd_Ra" target="_blank" title="YouTube">▶️</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mala -->
+                <div class="single-card">
+                    <div class="single-cover" style="background: url('https://i.ibb.co/23DMrcqh/EP-NEMESIS-mala.jpg') center/cover no-repeat;">
+                    </div>
+                    <div class="single-info">
+                        <h4>Mala</h4>
+                        <p class="year">2025</p>
+                        <div class="single-links">
+                            <a href="https://open.spotify.com/intl-es/track/1P9y5LzvbDa5nwQcMv7CTv?si=36f999dbcac244cd" target="_blank" title="Spotify">🎵</a>
+                            <a href="https://music.apple.com/do/song/mala/1851279125" target="_blank" title="Apple Music">🍎</a>
+                            <a href="https://youtu.be/3DWJH7T2kbA?si=vgRxRHxJ45EaDQi2" target="_blank" title="YouTube">▶️</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tu piel -->
+                 <div class="single-card">
+                    <div class="single-cover" style="background: url('https://i.ibb.co/84TgxJSQ/EP-NEMESIS-tu-piel.jpg') center/cover no-repeat;">
+                    </div> 
+                    <div class="single-info">
+                        <h4>Tu piel</h4>
+                        <p class="year">2025</p>
+                        <div class="single-links">
+                            <a href="https://open.spotify.com/intl-es/track/76aumRT2V0TNqMwOtQLcJv?si=f271" target="_blank" title="Spotify">🎵</a>
+                            <a href="https://music.apple.com/do/song/tu-piel/1851279124" target="_blank" title="Apple Music">🍎</a>
+                            <a href="https://youtu.be/E7w6NRXzz7I?si=iZuIhJ3z3gw9aI44" target="_blank" title="YouTube">▶️</a>
+                 </div>
+             </div>
+         </div> 
+     </div>
+
+        <!-- Videos Section -->
+        <div style="margin-top: 100px;">
+            <h3 style="font-size: 2.5rem; font-family: 'Bebas Neue', sans-serif; text-align: center; margin-bottom: 30px; color: #00A8FF; letter-spacing: 5px;">VIDEOS OFICIALES</h3>
+            <p style="text-align: center; color: rgba(255,255,255,0.6); margin-bottom: 50px; font-size: 1.1rem;">Visita mi canal de YouTube para ver todos mis videos musicales</p>
+            <div style="text-align: center;">
+                <a href="https://youtube.com/@nemesismrofficial" target="_blank" class="cta-button" style="display: inline-flex; align-items: center; gap: 10px;">
+                    ▶️ Ver Canal de YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIO SECTION -->
+    <section id="bio" class="section bio-section">
+        <h2 class="section-title">Mi Historia</h2>
+        <div class="bio-container">
+            <div class="bio-image">🎤</div>
+            <div class="bio-content">
+                <h2>Alexander Mendoza Rosario</h2>
+                <p>
+                    Conocido artísticamente como <strong>Nemesis MR</strong>, es un talentoso artista dominicano nacido el 2 de octubre del año 2000 en Santo Domingo, República Dominicana. Su historia musical es un testimonio de pasión, dedicación y conexión profunda con sus raíces culturales.
+                </p>
+                <p>
+                    Desde los cinco años comenzó a ejecutar instrumentos tradicionales como la tambora, la güira y la conga, cimentando una relación auténtica con la música folclórica dominicana. Su formación musical creció entre las influencias de la iglesia y las actividades escolares, donde descubrió que la música no era simplemente un pasatiempo, sino su verdadera vocación y propósito de vida.
+                </p>
+                <div class="bio-highlight">
+                    <p>
+                        <strong>Impulsado por la inspiración</strong> de un tío barbero apasionado por el arte popular, Nemesis MR construyó un estilo propio, lleno de identidad cultural y fusión innovadora. Hoy representa con orgullo a la República Dominicana en la escena musical internacional, explorando nuevas sonoridades y demostrando que con esfuerzo, fe y autenticidad es posible trascender fronteras.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LINKS SECTION -->
+    <section id="links" class="section links-section">
+        <h2 class="section-title">Conecta Conmigo</h2>
+        
+        <!-- Redes Sociales Principales -->
+        <div style="margin-bottom: 80px;">
+            <h3 style="font-size: 2rem; font-family: 'Bebas Neue', sans-serif; text-align: center; margin-bottom: 40px; color: rgba(255,255,255,0.9); letter-spacing: 3px;">REDES SOCIALES</h3>
+            <div class="links-grid">
+                <a href="https://www.instagram.com/nemesis_mr_/" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>@nemesis_mr_</p>
+                    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">Fotos, historias y más</p>
+                </a>
+                
+                <a href="https://www.tiktok.com/@nemesismr02" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #000, #69C9D0, #EE1D52);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </div>
+                    <h3>TikTok</h3>
+                    <p>@nemesismr02</p>
+                    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">Videos virales y tendencias</p>
+                </a>
+                
+                <a href="https://www.facebook.com/nemesismrofficial" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #1877F2, #0C5DC7);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </div>
+                    <h3>Facebook</h3>
+                    <p>Nemesis MR Official</p>
+                    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">Noticias y actualizaciones</p>
+                </a>
+                
+                <a href="https://twitter.com/nemesismr_" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #1DA1F2, #0C85D0);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </div>
+                    <h3>Twitter / X</h3>
+                    <p>@nemesismr_</p>
+                    <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">Tweets y actualizaciones</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Plataformas de Streaming -->
+        <div>
+            <h3 style="font-size: 2rem; font-family: 'Bebas Neue', sans-serif; text-align: center; margin-bottom: 40px; color: rgba(255,255,255,0.9); letter-spacing: 3px;">PLATAFORMAS DE MÚSICA</h3>
+            <div class="links-grid">
+                <a href="https://open.spotify.com/intl-es/artist/0Snb74cIWSPRopJGGmFbL2" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #1DB954, #1AA34A);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                    </div>
+                    <h3>Spotify</h3>
+                    <p>Escucha mi música</p>
+                </a>
+                
+                <a href="https://youtube.com/@nemesismrofficial" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #FF0000, #CC0000);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </div>
+                    <h3>YouTube</h3>
+                    <p>Videos oficiales y más</p>
+                </a>
+                
+                <a href="https://music.apple.com/do/artist/nemesis-mr/1739380311" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #FA243C, #C71C31);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.595-.706 10.495 10.495 0 0 0-2.627-.18C16.736.003 16.267 0 12.001 0h-.025c-4.266 0-4.735.003-5.35.005a10.495 10.495 0 0 0-2.627.18 5.022 5.022 0 0 0-1.595.706c-1.118.733-1.863 1.732-2.18 3.043a9.23 9.23 0 0 0-.24 2.19C.001 6.725 0 7.19 0 11.456v.088c0 4.266.003 4.731.005 5.346.018.794.094 1.587.24 2.19.317 1.31 1.062 2.31 2.18 3.043a5.022 5.022 0 0 0 1.595.706 10.495 10.495 0 0 0 2.627.18c.615.002 1.084.005 5.35.005h.025c4.266 0 4.735-.003 5.35-.005a10.495 10.495 0 0 0 2.627-.18 5.022 5.022 0 0 0 1.595-.706c1.118-.733 1.863-1.732 2.18-3.043.146-.603.222-1.396.24-2.19.002-.615.005-1.08.005-5.346v-.088c0-4.266-.003-4.731-.005-5.346zm-5.35 10.147a5.305 5.305 0 0 1-4.33 2.475c-2.938 0-5.323-2.485-5.323-5.542 0-3.057 2.385-5.543 5.323-5.543 1.394 0 2.664.542 3.614 1.426l-1.469 1.469a3.28 3.28 0 0 0-2.145-.795c-1.887 0-3.42 1.596-3.42 3.562s1.533 3.562 3.42 3.562c1.633 0 2.998-1.14 3.354-2.655h-3.354v-1.904h5.33c.065.368.098.75.098 1.146 0 3.634-2.427 6.2-5.428 6.2z"/>
+                        </svg>
+                    </div>
+                    <h3>Apple Music</h3>
+                    <p>Stream en Apple</p>
+                </a>
+                
+                <a href="https://link.deezer.com/s/3295bLJeP5GDvV2C11qzF" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #FF9900, #CC7700);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M18.81 4.16v3.03h5.19V4.16h-5.19zm0 4.37v3.03h5.19V8.53h-5.19zm0 4.38v3.03h5.19v-3.03h-5.19zM12.68 4.16v3.03h5.19V4.16h-5.19zm0 4.37v3.03h5.19V8.53h-5.19zm0 4.38v3.03h5.19v-3.03h-5.19zm0 4.37v3.03h5.19v-3.03h-5.19zM6.56 8.53v3.03h5.19V8.53H6.56zm0 4.38v3.03h5.19v-3.03H6.56zm0 4.37v3.03h5.19v-3.03H6.56zM.43 12.91v3.03h5.19v-3.03H.43zm0 4.37v3.03h5.19v-3.03H.43z"/>
+                        </svg>
+                    </div>
+                    <h3>Deezer</h3>
+                    <p>Calidad premium</p>
+                </a>
+                
+                <a href="https://www.snaptu.be" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #00D9FF, #0099CC);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M12 0L3 7v10l9 7 9-7V7l-9-7zm0 2.5L19 8v8l-7 5.5-7-5.5V8l7-5.5zM12 6l-5 4v6l5 4 5-4v-6l-5-4zm0 2l3 2.4v3.6l-3 2.4-3-2.4v-3.6L12 8z"/>
+                        </svg>
+                    </div>
+                    <h3>Amazon music</h3>
+                    <p>Descarga y escucha</p>
+                </a>
+                
+                <a href="https://tidal.com" target="_blank" class="link-card">
+                    <div class="link-icon" style="background: linear-gradient(135deg, #000, #333);">
+                        <svg width="40" height="40" fill="white" viewBox="0 0 24 24">
+                            <path d="M12.012 3.992L8.008 7.996 4.004 3.992 0 7.996 4.004 12l4.004-4.004L12.012 12l-4.004 4.004 4.004 4.004 4.004-4.004L12.012 12l4.004-4.004-4.004-4.004zm0 8.008l4.004-4.004L20.02 12l-4.004 4.004-4.004-4.004zm4.004 4.004L12.012 20.008 8.008 16.004l4.004-4.004 4.004 4.004z"/>
+                        </svg>
+                    </div>
+                    <h3>Tidal</h3>
+                    <p>Alta fidelidad</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>NEMESIS MR</h3>
+                <p>Artista dominicano llevando la fusión del folklore y lo urbano a nivel internacional. Representando la cultura de República Dominicana con orgullo y autenticidad.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/nemesis_mr_/" target="_blank" class="social-btn" title="Instagram">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://youtube.com/@nemesismrofficial" target="_blank" class="social-btn" title="YouTube">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="https://open.spotify.com/intl-es/artist/0Snb74cIWSPRopJGGmFbL2" target="_blank" class="social-btn" title="Spotify">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@nemesismr02" target="_blank" class="social-btn" title="TikTok">
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-links" id="footer-contact">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="mailto:Jaedmusicrd@gmail.com">📧 Jaedmusicrd@gmail.com</a></li>
+                    <li><a href="https://wa.me/c/18296108720" target="_blank">💬 WhatsApp Business</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 NEMESIS MR - Todos los derechos reservados | JAEDMUSICRD | República Dominicana 🇩🇴</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
